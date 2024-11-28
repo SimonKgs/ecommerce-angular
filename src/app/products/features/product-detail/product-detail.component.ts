@@ -1,11 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
+import { Product } from '../../../shared/interfaces/product.interface';
+import { ProductService } from '../../data-access/products.service';
+import { tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ProductDetailStateService } from '../../data-access/product-detail.state.service';
+import { ProductStarsComponent } from "../../ui/product-stars/product-stars.component";
 
 @Component({
   selector: 'app-product-detail',
-  imports: [],
+  imports: [ProductStarsComponent],
   templateUrl: './product-detail.component.html',
-  styles: ``
+  styles: ``,
+  providers: [ProductDetailStateService]
 })
-export class ProductDetailComponent {
+export default class ProductDetailComponent {
+
+  productDetailState = inject(ProductDetailStateService).state
+
+  // this will get the param directly from the url
+  // to use this previously I need to configure it on the app.config
+  // it must have the same name than the router param
+  id = input.required<string>();
+
+  constructor(){
+
+
+    effect(() => {
+      console.log(this.id());
+      this.productDetailState.getById(this.id())
+
+    })
+  }
 
 }
