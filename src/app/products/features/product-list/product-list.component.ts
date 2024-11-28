@@ -14,6 +14,9 @@ export default class ProductListComponent {
 
   productsState = inject(ProductsStateService)
 
+  changePage() {
+    this.productsState.changePage$.next(this.productsState.state().page + 1)
+  }
   
 
 }
