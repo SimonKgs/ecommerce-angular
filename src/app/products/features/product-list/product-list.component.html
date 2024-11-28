@@ -1,5 +1,8 @@
 <p>product-list works!</p>
 {{ productsState.state().status}}
-@for (product of productsState.state().products; track $index) {
-    <p>{{ product.title }}</p>
-}
+
+<div class="h-screen flex flex-wrap gap-5 justify-center">
+    @for (product of productsState.state().products; track $index) {
+        <product-card [product]="product"/>
+    }
+</div>
