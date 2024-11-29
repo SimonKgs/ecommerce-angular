@@ -1,6 +1,6 @@
 
 
-<a href="product/{{product().id}}">
+<a [routerLink]="['/product', product().id]">
     <div class="w-full h-full flex flex-col justify-between max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <picture class="flex justify-center">
             <img class="p-8 rounded-t-lg h-80" [src]="product().image" alt="{{ product().title }} image" />

@@ -2,10 +2,11 @@ import { Component, input } from '@angular/core';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { TruncatePipe } from '../../../shared/utils/pipes/truncate.pipe';
 import { ProductStarsComponent } from "../product-stars/product-stars.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'product-card',
-  imports: [TruncatePipe, ProductStarsComponent],
+  imports: [TruncatePipe, ProductStarsComponent, RouterLink],
   templateUrl: './product-card.component.html',
   styles: ``
 })
