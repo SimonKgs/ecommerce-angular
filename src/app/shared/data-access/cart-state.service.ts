@@ -63,12 +63,18 @@ export class CartStateService {
         }
     }
     
-    // los effects del signalSlice estan deprecated now so I can do natively
+    // los effects del signalSlice estan deprecated now so I need to do natively
     constructor() {
         effect(() => {
           // React to changes in the `products` signal
           const products = this.state.products();
+          const loaded = this.state.loaded()
+
+          if (loaded){
+            this._storageService.saveProducts(products)
+          }
           console.log(products);
+          console.log(loaded);
         });
     }
 
