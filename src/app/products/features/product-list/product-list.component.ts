@@ -29,7 +29,6 @@ export default class ProductListComponent {
       product,
       quantity: 1
     })
-    
   }
   
 

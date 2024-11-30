@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { ProductItemCart } from '../../../shared/interfaces/product.interface';
+import { Component, input, output } from '@angular/core';
+import { Product, ProductItemCart } from '../../../shared/interfaces/product.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,5 +11,13 @@ import { RouterLink } from '@angular/router';
 export class CartItemComponent {
 
   product = input.required<ProductItemCart>()
+
+  addToCart = output<Product>()
+
+  add(event:Event) {
+    event.stopPropagation()
+    event.preventDefault()
+    this.addToCart.emit(this.product().product)    
+  }
 
 }
