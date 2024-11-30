@@ -3,7 +3,7 @@ import { Routes } from "@angular/router";
 export default [
 
     {
-        path: 'products',
+        path: '',
         loadComponent: () => import('../product-list/product-list.component')
     },
     {
@@ -12,7 +12,7 @@ export default [
     },
     {
         path: '**',
-        redirectTo: 'products'
+        redirectTo: ''
     }
 
 ] as Routes
