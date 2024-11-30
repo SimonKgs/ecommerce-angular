@@ -3,10 +3,11 @@ import { CartItemComponent } from "./ui/cart-item/cart-item.component";
 import { CartStateService } from '../shared/data-access/cart-state.service';
 import { RouterLink } from '@angular/router';
 import { Product } from '../shared/interfaces/product.interface';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'cart',
-  imports: [CartItemComponent, RouterLink],
+  imports: [CartItemComponent, RouterLink, DecimalPipe ],
   templateUrl: './cart.component.html',
   styles: ``,
   providers: [CartStateService]
@@ -28,5 +29,18 @@ export default class CartComponent {
     })
   }
 
+  decreseFromCart(product: Product) {
+    this.cartState.decrease({
+      product,
+      quantity: 1
+    })
+  }
+
+  removeFromCart(product: Product) {
+    this.cartState.remove({
+      product,
+      quantity: 1
+    })
+  }
   
 }
