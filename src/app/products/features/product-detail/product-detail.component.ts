@@ -5,6 +5,7 @@ import { tap } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductDetailStateService } from '../../data-access/product-detail.state.service';
 import { ProductStarsComponent } from "../../ui/product-stars/product-stars.component";
+import { CartStateService } from '../../../shared/data-access/cart-state.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,6 +17,7 @@ import { ProductStarsComponent } from "../../ui/product-stars/product-stars.comp
 export default class ProductDetailComponent {
 
   productDetailState = inject(ProductDetailStateService).state
+  cartState = inject(CartStateService).state
 
   // this will get the param directly from the url
   // to use this previously I need to configure it on the app.config
@@ -23,13 +25,25 @@ export default class ProductDetailComponent {
   id = input.required<string>();
 
   constructor(){
-
-
     effect(() => {
       console.log(this.id());
       this.productDetailState.getById(this.id())
-
     })
   }
+
+
+  addToCart() {
+    console.log(this.productDetailState().product);
+
+    const product = this.productDetailState().product
+
+    if(product){
+      this.cartState.add({
+        product,
+        quantity: 1
+      })
+    }
+  }
+
 
 }
